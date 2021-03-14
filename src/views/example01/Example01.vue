@@ -1,0 +1,8 @@
+<template>
+  <h1>Welcome</h1>
+</template>
+<style scoped>
+h1 {
+  color: red;
+}
+</style>
