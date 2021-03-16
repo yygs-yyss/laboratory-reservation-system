@@ -3,14 +3,17 @@
     <h1>Vue实例</h1>
     {{ isshow ? "true" : "false " }}
     {{ message }}
+    {{ myDate }}
+    {{ isshow }}
     {{ replaceDate(user.inserttime) }}
     <ul>
       <li><router-link to="/example01">Welcome</router-link></li>
       <button @click="change">change</button>
+      <button @click="chane">chane</button>
     </ul>
   </div>
 </template>
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -33,16 +36,24 @@ export default defineComponent({
     },
     addAddress() {
       this.user.address = "956";
+    },
+    chane() {
+      this.isshow = !this.isshow;
     }
   },
   computed: {
-    myDate: function() {
+    myDate(): string {
       return this.user.inserttime.replace("T", " ");
     },
     replaceDate() {
-      return date => {
+      return (date: string) => {
         return date.replace("T", " ");
       };
+    }
+  },
+  watch: {
+    isshow(newValue, oldValue) {
+      alert(newValue);
     }
   }
 });
