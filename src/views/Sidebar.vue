@@ -8,6 +8,16 @@
     {{ replaceDate(user.inserttime) }}
     <ul>
       <li><router-link to="/example01">Welcome</router-link></li>
+      <li>
+        <router-link to="/example03/student/24/homework/24">
+          Welcome1
+        </router-link>
+      </li>
+      <li>
+        <router-link to="/example03/student/20/homework/46">
+          Welcome2
+        </router-link>
+      </li>
       <button @click="change">change</button>
       <button @click="chane">chane</button>
     </ul>
@@ -52,7 +62,7 @@ export default defineComponent({
     }
   },
   watch: {
-    isshow(newValue, oldValue) {
+    isshow(newValue) {
       alert(newValue);
     }
   }
