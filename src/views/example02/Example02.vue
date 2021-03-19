@@ -31,9 +31,16 @@ function userMessage(msg: Ref<string>) {
   };
 }
 function useUser(user: Ref<User>) {
-  const formatDateFunc = computed(() => (data: string) => {
-    return data.replace("T", "");
+  const formatDateFunc = computed(() => {
+    return (data: string) => data.replace("T", " ");
   });
+  const changeAddress = () => {
+    return (user.value.address = (Math.random() * 1000).toFixed(0).toString());
+  };
+  return {
+    formatDateFunc,
+    changeAddress
+  }
 }
 export default defineComponent({
   setup() {
