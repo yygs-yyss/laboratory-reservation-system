@@ -1,11 +1,6 @@
 <template>
   <div>
     <h1>Vue实例</h1>
-    {{ isshow ? "true" : "false " }}
-    {{ message }}
-    {{ myDate }}
-    {{ isshow }}
-    {{ replaceDate(user.inserttime) }}
     <ul>
       <li><router-link to="/example01">Welcome</router-link></li>
       <li>
@@ -20,6 +15,18 @@
       </li>
       <button @click="change">change</button>
       <button @click="chane">chane</button>
+      <li>
+        Form Input Bindings
+        <ul>
+          <li><router-link to="/example06-01">v-module</router-link></li>
+          <li><router-link to="/example06-02">Examples</router-link></li>
+        </ul>
+      </li>
+      <li>
+        <router-link to="/example06-03">
+          Homework - 1
+        </router-link>
+      </li>
     </ul>
   </div>
 </template>

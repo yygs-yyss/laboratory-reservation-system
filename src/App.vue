@@ -1,25 +1,23 @@
 <template>
-  <!-- <div id="app">
+  <div id="app">
     <sidebar id="sidebar" />
     <router-view id="router1" :key="$router.path" />
   </div>
-  <div>
+  <!-- <div>
     <login />
   </div>
   <br />
   <br /> -->
-  <div>
-    <setup />
-  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import sidebar from "@/views/Sidebar.vue";
-import login from "@/views/example03/Login.vue";
-import setup from "@/views/example02/Example02.vue";
+// import login from "@/views/example03/Login.vue";
+// import setup from "@/views/example02/Example02.vue";
+import model from "@/views/example06/Example06-01.vue";
 export default defineComponent({
-  components: { setup }
+  components: { sidebar }
 });
 </script>
 
