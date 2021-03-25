@@ -30,6 +30,8 @@
     </form>
     <p>{{ user }}</p>
     <input type="file" @change="fileChange($event.target.files[0])" />
+    <br />
+    {{ file.fileName }}/ {{ file.fileSize }}
   </div>
 </template>
 <script lang="ts">

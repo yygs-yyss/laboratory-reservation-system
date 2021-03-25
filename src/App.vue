@@ -15,7 +15,7 @@ import { defineComponent } from "vue";
 import sidebar from "@/views/Sidebar.vue";
 // import login from "@/views/example03/Login.vue";
 // import setup from "@/views/example02/Example02.vue";
-import model from "@/views/example06/Example06-01.vue";
+// import model from "@/views/example06/Example06-01.vue";
 export default defineComponent({
   components: { sidebar }
 });

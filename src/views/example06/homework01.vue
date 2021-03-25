@@ -48,6 +48,9 @@ export default defineComponent({
         sum += c.point;
       });
       score.value = sum;
+      icourseRef.value.sort((a, b) => {
+        return a.term - b.term;
+      });
     });
     const activeColor = computed(() => {
       if (score.value < 12) {

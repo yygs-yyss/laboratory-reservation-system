@@ -1,58 +1,44 @@
 <template>
   <div>
     <form>
-      <input type="text" v-model="user.name" />
-      <br />
-      <select v-model="user.title">
-        <option v-for="(t, index) of titles" :key="index" :value="t">
-          {{ t.name }}
-        </option>
-      </select>
+      <label>
+        <input type="checkbox" :v-model="agree" :value="true" />
+        同意条款
+      </label>
       <br />
       <template v-for="(c, index) of courses" :key="index">
         <label>
-          <input type="checkbox" v-model="user.courses" :value="c.name" />
+          <input type="checkbox" v-model="courseRef" :value="c.name" />
           {{ c.name }}
         </label>
         <br />
       </template>
+      <button :disabled="!agree || len < 2">submit</button>
+      {{ agree }}
+      {{ len }}
+      {{ courseRef }}
     </form>
-    <p>{{ user }}</p>
-    <input type="file" @change="fileChange($event.target.files[0])" />
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref, Ref } from "vue";
-import { User } from "@/datasource/Types";
-import { listCourses, listTitles } from "@/datasource/DataSource";
-
-interface VFile {
-  fileName?: string;
-  fileSize?: string;
-}
-function useFile(file: Ref<VFile>) {
-  const fileChange = (f: File) => {
-    console.log(f);
-    file.value.fileName = f.name;
-    file.value.fileSize = `${(f.size / 1024 / 1024).toFixed(2)}MB`;
-  };
-  return {
-    fileChange
-  };
-}
+import { defineComponent, ref, watch } from "vue";
+import { listCourses } from "@/datasource/DataSource";
+import { Course } from "@/datasource/Types";
+const course1: Course[] = [];
 export default defineComponent({
   setup() {
-    const user = ref<User>({ name: "123", courses: [] });
-    const file = ref({ fileName: "", fileSize: "" });
-    const titles = listTitles();
+    const agree = false;
     const courses = listCourses();
-    const { fileChange } = useFile(file);
+    const courseRef = ref<Course[]>(course1);
+    const len = ref(0);
+    watch(courseRef, () => {
+      len.value = courseRef.value.length;
+    });
     return {
-      user,
-      file,
-      titles,
       courses,
-      fileChange
+      agree,
+      courseRef,
+      len
     };
   }
 });
