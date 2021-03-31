@@ -27,6 +27,16 @@
           Homework - 1
         </router-link>
       </li>
+      <li>
+        <router-link to="/example07">
+          Example07
+        </router-link>
+      </li>
+      <li>
+        <router-link to="/example09">
+          Example09
+        </router-link>
+      </li>
     </ul>
   </div>
 </template>
