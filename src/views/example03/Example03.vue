@@ -1,5 +1,4 @@
 <template>
-  <h1>Welcome</h1>
   <h2>studentID:{{ sid }}</h2>
   <h2>homeworkID:{{ hid }}</h2>
 </template>
@@ -16,7 +15,8 @@ export default defineComponent({
 </script>
 
 <style scoped>
-h1 {
+h2 {
   color: blue;
+  /* border: 1px solid red; */
 }
 </style>

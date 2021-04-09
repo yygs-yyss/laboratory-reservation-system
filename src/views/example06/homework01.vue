@@ -34,9 +34,6 @@ import { listCourses, Course } from "@/datasource/homework01";
 import { computed, defineComponent, ref, watch } from "vue";
 const course1: Course[] = [];
 export default defineComponent({
-  data() {
-    // eslint-disable-next-line vue/return-in-computed-property
-  },
   setup() {
     const courses = listCourses();
     const icourseRef = ref<Course[]>(course1);

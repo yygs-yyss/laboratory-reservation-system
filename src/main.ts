@@ -7,3 +7,5 @@ createApp(App)
   .use(store)
   .use(router)
   .mount("#app");
+
+process.env.NODE_ENV == "development" && require("@/mock/index");

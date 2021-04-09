@@ -6,7 +6,6 @@ import MockAdapter from "axios-mock-adapter";
 const mock = new MockAdapter(axios);
 // 过滤http前缀请求
 mock.onGet(/^http/).passThrough();
-
 // 地址，支持JS正则表达式
 // 正则表达式中 \，由转义符，\/，替代
 // 匹配任意字符，\w+；
