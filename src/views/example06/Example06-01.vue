@@ -26,22 +26,35 @@
         </label>
         <br />
       </template>
+      {{ a }}/{{ b }}
       <button type="button">提交</button>
     </form>
     <p>{{ user }}</p>
     <input type="file" @change="fileChange($event.target.files[0])" />
     <br />
     {{ file.fileName }}/ {{ file.fileSize }}
+    <button @click="change">kk</button>
   </div>
+  <p @mouseover="agree = true" @mouseleave="agree = false" :class="bg - red">
+    xx
+  </p>
 </template>
 <script lang="ts">
-import { defineComponent, ref, Ref } from "vue";
+import { computed, defineComponent, ref, Ref } from "vue";
 import { User } from "@/datasource/Types";
 import { listCourses, listTitles } from "@/datasource/DataSource";
 
 interface VFile {
   fileName?: string;
   fileSize?: string;
+}
+function kk(u: Ref<VFile>) {
+  const change = () => {
+    return 1;
+  };
+  return {
+    change
+  };
 }
 function useFile(file: Ref<VFile>) {
   const fileChange = (f: File) => {
@@ -60,13 +73,29 @@ export default defineComponent({
     const titles = listTitles();
     const courses = listCourses();
     const { fileChange } = useFile(file);
+    const a = ref(1);
+    const b = computed(() => {
+      return a.value + 1;
+    });
+    const change = () => {
+      a.value++;
+    };
+
     return {
       user,
       file,
       titles,
       courses,
-      fileChange
+      fileChange,
+      a,
+      b,
+      change
     };
   }
 });
 </script>
+<style scoped>
+.bg-red {
+  background-color: red;
+}
+</style>
