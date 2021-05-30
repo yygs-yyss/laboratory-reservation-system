@@ -135,7 +135,7 @@ export default defineComponent({
     const state: Store<State> = useStore();
     const classroomNumber = state.classroomNumber;
     return {
-      c
+      classroomNumber
     }
   }
 });
