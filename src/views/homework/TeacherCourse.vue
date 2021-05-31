@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="tableData" style="width: 100%">
+  <el-table id="table" :data="tableData" style="width: 100%">
     <el-table-column label="课程名称" prop="courseName"></el-table-column>
     <el-table-column label="开课周次" prop="start"></el-table-column>
     <el-table-column label="结课周次" prop="end"></el-table-column>
@@ -9,58 +9,33 @@
       <template #header>
         <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
       </template>
-      <template #default="scope">
-        <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">
-          Edit
+      <router-link to="/homework/ReserveLab">
+        <el-button>
+          实验选课
         </el-button>
-        <el-button
-          size="mini"
-          type="danger"
-          @click="handleDelete(scope.$index, scope.row)"
-        >
-          Delete
-        </el-button>
-      </template>
+      </router-link>
     </el-table-column>
   </el-table>
 </template>
 
-<script>
-export default {
-  data() {
+<script lang="ts">
+import { State } from "@/store";
+import { Store, useStore } from "vuex";
+import { computed, defineComponent, ref } from "vue";
+import { SelectMessage } from "@/datasource/Types";
+
+export default defineComponent({
+  setup() {
+    const store: Store<State> = useStore();
+    const tableData = computed(() => store.state.courseMessage);
     return {
-      tableData: [
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
-        },
-        {
-          date: "2016-05-04",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1517 弄"
-        },
-        {
-          date: "2016-05-01",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄"
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1516 弄"
-        }
-      ],
-      search: ""
+      tableData
     };
-  },
-  methods: {
-    handleEdit(index, row) {
-      console.log(index, row);
-    },
-    handleDelete(index, row) {
-      console.log(index, row);
-    }
   }
-};
+});
 </script>
+<style scoped>
+#table {
+  margin: 30px 30px;
+}
+</style>

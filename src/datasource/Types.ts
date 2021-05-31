@@ -3,11 +3,6 @@ export interface Lab {
   number: number;
   detail: string;
 }
-export interface Lab {
-  id: string;
-  number: number;
-  detail: string;
-}
 export interface ClassroomMessage {
   id?: string;
   lesson?: string;
@@ -16,4 +11,18 @@ export interface ClassroomMessage {
   end?: number;
   teacherName?: string;
   title?: string;
+}
+export interface CourseMessage {
+  courseName?: string;
+  start?: number;
+  end?: number;
+  teacherName?: string;
+  period?: number;
+  studentNumber?: number;
+}
+export interface SelectMessage {
+  id?: string;
+  start?: number;
+  end?: number;
+  lesson?: string;
 }

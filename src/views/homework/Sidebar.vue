@@ -8,7 +8,7 @@
         </h2>
         <ul>
           <li>
-            <router-link to="/homework/ReserveLab" class="i">
+            <router-link to="/homework/courseM" class="i">
               <i class="el-icon-user-solid"></i>
               课程实验管理
             </router-link>

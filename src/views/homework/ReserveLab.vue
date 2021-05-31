@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <div>
-      <el-select v-model="classroom" filterable placeholder="请选择">
+  <div id="id">
+    <h1>实验室预约</h1>
+    <div class="classroom">
+      实验教室：
+      <el-select v-model="number" filterable placeholder="请选择">
         <el-option
           v-for="(l, index) in classroomNumber"
           :key="index"
@@ -12,44 +14,63 @@
         </el-option>
       </el-select>
 
-      <el-button @click="query(classroom)">查询</el-button>
+      <el-button class="button" @click="query(classroom)">查询</el-button>
     </div>
 
     <div>
-      起始周次：
-      <el-select filterable placeholder="请选择">
-        <el-option></el-option>
-      </el-select>
-      结束周次：
-      <select name="" id="">
-        <option value="1">第一周</option>
-        <option value="2">第二周</option>
-        <option value="3">第三周</option>
-        <option value="4">第四周</option>
-        <option value="5">第五周</option>
-        <option value="6">第六周</option>
-        <option value="7">第七周</option>
-        <option value="8">第八周</option>
-        <option value="9">第九周</option>
-        <option value="10">第十周</option>
-        <option value="">第十一周</option>
-        <option value="">第十二周</option>
-        <option value="">第十三周</option>
-        <option value="">第十四周</option>
-        <option value="">第十五周</option>
-        <option value="">第十六周</option>
-        <option value="">第十七周</option>
-        <option value="">第十八周</option>
-      </select>
-      课程节次：
-      <select name="" id="">
-        <option value="">第一节课</option>
-        <option value="">第二节课</option>
-        <option value="">第三节课</option>
-        <option value="">第四节课</option>
-        <option value="">第五节课</option>
-      </select>
-      <button @click="select()">选课</button>
+      <div class="classroom">
+        起始周次：
+
+        <el-select
+          v-model="selectMessage.start"
+          filterable
+          placeholder="请选择"
+        >
+          <el-option
+            v-for="(l, index) in 18"
+            :key="index"
+            :label="`第${l}周`"
+            :value="l"
+          >
+            第{{ l }}周
+          </el-option>
+        </el-select>
+      </div>
+
+      <div class="classroom">
+        结束周次：
+        <el-select v-model="selectMessage.end" filterable placeholder="请选择">
+          <el-option
+            v-for="(l, index) in 18"
+            :key="index"
+            :label="`第${l}周`"
+            :value="l"
+          >
+            第{{ l }}周
+          </el-option>
+        </el-select>
+      </div>
+
+      <div class="classroom">
+        课程节次：
+        <el-select
+          v-model="selectMessage.lesson"
+          filterable
+          placeholder="请选择"
+        >
+          <el-option
+            v-for="(l, index) in 7"
+            :key="index"
+            :label="`丹青${l.id}`"
+            :value="`l.id`"
+          >
+            丹青{{ l.id }}
+          </el-option>
+        </el-select>
+        <el-button class="button" @click="select(selectMessage)">
+          选课
+        </el-button>
+      </div>
     </div>
     <table border="none">
       <tr>
@@ -126,15 +147,21 @@
 <script lang="ts">
 import { State } from "@/store";
 import { Store, useStore } from "vuex";
-import { computed, defineComponent, ref } from "vue";
+import { computed, defineComponent, Ref, ref } from "vue";
 import axios from "axios";
-import { ClassroomMessage, Lab } from "@/datasource/Types";
+import { ClassroomMessage, Lab, SelectMessage } from "@/datasource/Types";
 
 export default defineComponent({
   setup() {
     const store: Store<State> = useStore();
     const classroomNumber = computed(() => store.state.Labs);
-    const classroom = ref<Lab>();
+    const number = ref<string>();
+    const selectMessage = ref<SelectMessage>({
+      id: "",
+      start: 1,
+      end: 1,
+      lesson: ""
+    });
     const classroomMessage = ref<ClassroomMessage[]>([
       {
         id: "901",
@@ -146,22 +173,37 @@ export default defineComponent({
       }
     ]);
 
-    const query = (classroom: Lab) => {
-      axios.get("http://localhost:8080/api/${Lab}").then(resp => {
+    const query = (number: string) => {
+      const url = `http://localhost:8080/api/lab/${number}`;
+      axios.get(url).then(resp => {
         classroomMessage.value = resp.data;
       });
     };
-    const select = () => {
+    const select = (selectMessage: Ref<SelectMessage>) => {
       axios.get("http://localhost:8080/api/${Lab}").then(resp => {
         classroomMessage.value = resp.data;
       });
     };
     return {
       classroomNumber,
-      classroom,
+      number,
       query,
-      classroomMessage
+      classroomMessage,
+      selectMessage,
+      select
     };
   }
 });
 </script>
+<style scoped>
+#id {
+  margin: 20px 30px;
+  display: block;
+}
+.classroom {
+  margin: 10px 0;
+}
+.button {
+  margin: 0 10px;
+}
+</style>

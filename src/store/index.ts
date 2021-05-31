@@ -1,14 +1,31 @@
 import { createStore } from "vuex";
-import { Lab } from "@/datasource/Types";
+import { Lab, CourseMessage } from "@/datasource/Types";
 export interface State {
   Labs?: Lab[];
+  courseMessage: CourseMessage[];
 }
 const myState: State = {
   Labs: [
     { id: "901", number: 100, detail: "" } as Lab,
     { id: "902", number: 100, detail: "" } as Lab,
     { id: "903", number: 100, detail: "" } as Lab,
-    { id: "904", number: 100, detail: "" } as Lab,
+    { id: "904", number: 100, detail: "" } as Lab
+  ],
+  courseMessage: [
+    {
+      courseName: "数据结构",
+      start: 1,
+      end: 10,
+      teacherName: "y",
+      studentNumber: 100
+    } as CourseMessage,
+    {
+      courseName: "数据挖掘",
+      start: 2,
+      end: 10,
+      teacherName: "y",
+      studentNumber: 100
+    } as CourseMessage
   ]
 };
 // const myMutations: MutationTree<State> = {
