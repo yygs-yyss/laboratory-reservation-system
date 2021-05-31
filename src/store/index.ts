@@ -1,20 +1,22 @@
-import { createStore, MutationTree } from "vuex";
-import { User } from "@/datasource/Types";
+import { createStore } from "vuex";
+import { Lab } from "@/datasource/Types";
 export interface State {
-  user?: User;
+  Labs?: Lab[];
 }
 const myState: State = {
-  user: {
-    name: "yyy",
-    address: "123456"
-  }
+  Labs: [
+    { id: "901", number: 100, detail: "" } as Lab,
+    { id: "902", number: 100, detail: "" } as Lab,
+    { id: "903", number: 100, detail: "" } as Lab,
+    { id: "904", number: 100, detail: "" } as Lab,
+  ]
 };
-const myMutations: MutationTree<State> = {
-  updateUser: (state, data: User) => (state.user = data)
-};
+// const myMutations: MutationTree<State> = {
+//   updateUser: (state, data: User) => (state.user = data)
+// };
 export default createStore({
   state: myState,
-  mutations: myMutations,
+  mutations: {},
   actions: {},
   modules: {}
 });

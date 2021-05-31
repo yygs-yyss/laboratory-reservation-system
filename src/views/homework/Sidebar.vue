@@ -3,19 +3,19 @@
     <div class="content-p-nav">
       <nav>
         <h2>
-          <i class="material-icons">dashboard</i>
-          本科教育
+          <i class="el-icon-s-custom"></i>
+          实验室预约系统
         </h2>
         <ul>
           <li>
-            <router-link to="/homework/ReserveLab">
-              <i class="material-icons">chevron_right</i>
+            <router-link to="/homework/ReserveLab" class="i">
+              <i class="el-icon-user-solid"></i>
               课程实验管理
             </router-link>
           </li>
           <li>
-            <router-link to="/homework/ReserveLab">
-              <i class="material-icons">chevron_right</i>
+            <router-link to="/homework/teacherCourse" class="i">
+              <i class="el-icon-circle-plus"></i>
               实验室预约
             </router-link>
           </li>
