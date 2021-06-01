@@ -1,11 +1,12 @@
 import { ActionTree, createStore, MutationTree } from "vuex";
-import { User, Lab, CourseMessage } from "@/datasource/Types";
+import { User, Lab, CourseMessage, Teacher } from "@/datasource/Types";
 import * as vxt from "@/store/VuexTypes";
 import { AxiosAdapter, AxiosResponse } from "axios";
 import { ResultVO } from "@/mock";
 export interface State {
   Labs?: Lab[];
   courseMessage: CourseMessage[];
+  teachers?: Teacher[];
 }
 const myState: State = {
   Labs: [
@@ -29,6 +30,26 @@ const myState: State = {
       teacherName: "y",
       studentNumber: 100
     } as CourseMessage
+  ],
+  teachers: [
+    {
+      id: "1",
+      name: "bwhyman",
+      title: "讲师",
+      graduationSchool: "东北林业大学",
+      userName: "2046204600",
+      password: "123456",
+      detail: "软件工程专业教师"
+    },
+    {
+      id: "2",
+      name: "bwhyman",
+      title: "讲师",
+      graduationSchool: "东北林业大学",
+      userName: "2046204600",
+      password: "123456",
+      detail: "软件工程专业教师"
+    }
   ]
 };
 const myMutations: MutationTree<State> = {};

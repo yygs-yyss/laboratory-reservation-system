@@ -30,3 +30,12 @@ export interface User {
   userName?: string;
   password?: string;
 }
+export interface Teacher {
+  id?: string;
+  name?: string;
+  title?: string;
+  graduationSchool?: string;
+  userName?: string;
+  password?: string;
+  detail?: string;
+}
