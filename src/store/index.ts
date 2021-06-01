@@ -1,5 +1,8 @@
-import { createStore } from "vuex";
-import { Lab, CourseMessage } from "@/datasource/Types";
+import { ActionTree, createStore, MutationTree } from "vuex";
+import { User, Lab, CourseMessage } from "@/datasource/Types";
+import * as vxt from "@/store/VuexTypes";
+import { AxiosAdapter, AxiosResponse } from "axios";
+import { ResultVO } from "@/mock";
 export interface State {
   Labs?: Lab[];
   courseMessage: CourseMessage[];
@@ -28,12 +31,15 @@ const myState: State = {
     } as CourseMessage
   ]
 };
-// const myMutations: MutationTree<State> = {
-//   updateUser: (state, data: User) => (state.user = data)
-// };
+const myMutations: MutationTree<State> = {};
+const myActions: ActionTree<State, State> = {
+  [vxt.LOGIN]: async ({ commit }, user: User) => {
+    //const resp: AxiosResponse<ResultVO> = await.get()
+  }
+};
 export default createStore({
   state: myState,
-  mutations: {},
-  actions: {},
+  mutations: myMutations,
+  actions: myActions,
   modules: {}
 });

@@ -26,3 +26,7 @@ export interface SelectMessage {
   end?: number;
   lesson?: string;
 }
+export interface User {
+  userName?: string;
+  password?: string;
+}

@@ -1,4 +1,5 @@
 <template>
+  <!-- <login></login> -->
   <h></h>
   <div id="id">
     <sidebar></sidebar>
@@ -9,8 +10,11 @@
 import { defineComponent } from "vue";
 import sidebar from "@/views/homework/Sidebar.vue";
 import h from "@/views/homework/Head.vue";
+import login from "@/views/homework/Login.vue";
+import pr from "@/views/homework/practice.vue";
 export default defineComponent({
   components: { sidebar, h }
+  //components: { login }
 });
 </script>
 
