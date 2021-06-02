@@ -2,7 +2,7 @@
   <!-- <login></login> -->
   <h></h>
   <div id="id">
-    <sidebarAdmin></sidebarAdmin>
+    <sidebar></sidebar>
     <router-view key="$route.path"></router-view>
   </div>
 </template>
@@ -10,11 +10,11 @@
 import { defineComponent } from "vue";
 import sidebar from "@/views/homework/Sidebar.vue";
 import h from "@/views/homework/Head.vue";
-import login from "@/views/homework/Login.vue";
-import pr from "@/views/homework/practice.vue";
-import sidebarAdmin from "@/views/homework/sidebarAdmin.vue";
+// import login from "@/views/homework/Login.vue";
+// import pr from "@/views/homework/practice.vue";
+// import sidebarAdmin from "@/views/homework/sidebarAdmin.vue";
 export default defineComponent({
-  components: { sidebarAdmin, h }
+  components: { sidebar, h }
   //components: { login }
 });
 </script>

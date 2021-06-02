@@ -14,7 +14,11 @@
             </router-link>
           </li>
           <li>
-            <router-link to="/homework/teacherCourse" class="i">
+            <router-link
+              to="/homework/teacherCourse"
+              class="i"
+              @click="query()"
+            >
               <i class="el-icon-circle-plus"></i>
               实验室预约
             </router-link>
@@ -25,6 +29,25 @@
     <div id="id"></div>
   </div>
 </template>
+<script lang="ts">
+import { State } from "@/store";
+import { GET_COURSES } from "@/store/VuexTypes";
+import { Store, useStore } from "vuex";
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  setup() {
+    const store: Store<State> = useStore();
+    const query = () => {
+      store.dispatch(GET_COURSES, "BO");
+    };
+    return {
+      query
+    };
+  }
+});
+</script>
+
 <style scoped>
 * {
   padding: 0;

@@ -1,8 +1,9 @@
 import { ActionTree, createStore, MutationTree } from "vuex";
-import { User, Lab, CourseMessage, Teacher } from "@/datasource/Types";
+import { Lab, CourseMessage, Teacher } from "@/datasource/Types";
 import * as vxt from "@/store/VuexTypes";
-import { AxiosAdapter, AxiosResponse } from "axios";
+import axios from "axios";
 import { ResultVO } from "@/mock";
+
 export interface State {
   Labs?: Lab[];
   courseMessage: CourseMessage[];
@@ -15,22 +16,8 @@ const myState: State = {
     { id: "903", number: 100, detail: "" } as Lab,
     { id: "904", number: 100, detail: "" } as Lab
   ],
-  courseMessage: [
-    {
-      courseName: "数据结构",
-      start: 1,
-      end: 10,
-      teacherName: "y",
-      studentNumber: 100
-    } as CourseMessage,
-    {
-      courseName: "数据挖掘",
-      start: 2,
-      end: 10,
-      teacherName: "y",
-      studentNumber: 100
-    } as CourseMessage
-  ],
+  courseMessage: [],
+
   teachers: [
     {
       id: "1",
@@ -52,10 +39,16 @@ const myState: State = {
     }
   ]
 };
-const myMutations: MutationTree<State> = {};
+const myMutations: MutationTree<State> = {
+  [vxt.UPDATE_COURSES]: (state, data: CourseMessage[]) =>
+    (state.courseMessage = data)
+};
 const myActions: ActionTree<State, State> = {
-  [vxt.LOGIN]: async ({ commit }, user: User) => {
-    //const resp: AxiosResponse<ResultVO> = await.get()
+  [vxt.GET_COURSES]: async ({ commit }, name: string) => {
+    console.log(name);
+    const resp = await axios.post<ResultVO>("/api/teacher/get", name);
+    console.log(1);
+    commit(vxt.UPDATE_COURSES, resp.data.data);
   }
 };
 export default createStore({

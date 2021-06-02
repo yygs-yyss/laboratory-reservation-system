@@ -13,12 +13,12 @@ export interface ClassroomMessage {
   title?: string;
 }
 export interface CourseMessage {
-  courseName?: string;
-  start?: number;
-  end?: number;
-  teacherName?: string;
-  period?: number;
-  studentNumber?: number;
+  courseName: string;
+  start: number;
+  end: number;
+  teacherName: string;
+  period: number;
+  studentNumber: number;
 }
 export interface SelectMessage {
   id?: string;

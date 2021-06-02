@@ -12,3 +12,6 @@ export const GETTER_PREMISSION = "GETTER_PREMISSION";
 // homework02
 export const LIST_SHOPS = "LIST_SHOPS";
 export const GET_SHOP = "GET_SHOP";
+// project
+export const GET_COURSES = "GET_COURSES";
+export const UPDATE_COURSES = "UPDATE_COURSES";
