@@ -1,5 +1,5 @@
 import { ActionTree, createStore, MutationTree } from "vuex";
-import { Lab, CourseMessage, Teacher } from "@/datasource/Types";
+import { Lab, CourseMessage, Teacher, User } from "@/datasource/Types";
 import * as vxt from "@/store/VuexTypes";
 import axios from "axios";
 import { ResultVO } from "@/mock";
@@ -44,6 +44,11 @@ const myMutations: MutationTree<State> = {
     (state.courseMessage = data)
 };
 const myActions: ActionTree<State, State> = {
+  [vxt.LOGIN]: async (state, data: any) => {
+    console.log(data);
+    const resp = await axios.post<ResultVO>("/api/login", data);
+    console.log(resp);
+  },
   [vxt.GET_COURSES]: async ({ commit }, name: string) => {
     console.log(name);
     const resp = await axios.post<ResultVO>("/api/teacher/get", name);

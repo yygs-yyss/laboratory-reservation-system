@@ -1,14 +1,7 @@
 <template>
   <div class="img">
     <div align="center">
-      <el-form
-        :model="ruleForm"
-        status-icon
-        :rules="rules"
-        ref="ruleForm"
-        label-width="100px"
-        class="demo-ruleForm"
-      >
+      <el-form label-width="100px" class="demo-ruleForm">
         <el-form-item label="用户名">
           <el-input
             type="text"
@@ -32,6 +25,7 @@
           >
             登录
           </el-button>
+          {{ ruleForm.userName }}/{{ ruleForm.assword }}
         </el-form-item>
       </el-form>
     </div>
@@ -39,16 +33,23 @@
 </template>
 
 <script lang="ts">
+import store from "@/store";
+import { LOGIN } from "@/store/VuexTypes";
 import { defineComponent, Ref, ref } from "vue";
 
 export default defineComponent({
   setup() {
-    const form = { userName: "", password: "" };
+    const form = { userName: "1", password: "" };
     const ruleForm = ref(form);
     const change = (e: { $forceUpdate: () => void }) => {
       e.$forceUpdate();
     };
+    const submitForm = (form: Ref) => {
+      console.log(form);
+      store.dispatch(LOGIN, form.value);
+    };
     return {
+      submitForm,
       ruleForm,
       change
     };

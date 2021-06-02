@@ -11,4 +11,4 @@ createApp(App)
   .use(router)
   .mount("#app");
 
-// process.env.NODE_ENV == "development" && require("@/mock/index");
+//process.env.NODE_ENV == "development" && require("@/mock/index");

@@ -1,8 +1,11 @@
-import {} from "@/datasource/Types";
+import { User } from "@/datasource/Types";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 
 const mock = new MockAdapter(axios);
+mock.onAny(/^http/).passThrough();
+mock.onAny(/^\/api\//).passThrough();
+
 // 过滤http前缀请求
 //mock.onGet(/^http/).passThrough();
 // 地址，支持JS正则表达式
@@ -30,10 +33,10 @@ const resulVO: ResultVO = {
 
 //reply的参数列表 (status, data, headers)
 //status，http状态码  data是返回的json数据
-// mock.onGet("users/12").reply(200, {
-//   code: 200,
-//   data: { user: { id: 1, name: "BO" } as User }
-// } as ResultVO);
+mock.onPost("api/teacher/get").reply(200, {
+  code: 200,
+  data: { user: { id: 1, name: "BO" } as User }
+} as ResultVO);
 
 // // 等价于 users/任意值
 // mock.onGet(path("users/{uid}")).reply(200, {
